@@ -1,0 +1,24 @@
+<md-toolbar class="md-primary">
+  <div class="md-toolbar-tools">
+    <h2>Font-picker task</h2>
+  </div>
+</md-toolbar>
+<md-content layout-padding>
+  <md-input-container class="md-block">
+    <label>Your text</label>
+    <textarea 
+      ng-model="text" 
+      md-maxlength="150" 
+      rows="5" 
+      md-select-on-focus 
+      style="line-height: unset;"
+      ng-style="{'font-family': textFont.family, 'font-size': textFont.size}">
+    </textarea>
+    <small>Current font: <strong>{{textFont.name}}</strong></small>
+  </md-input-container>
+
+  <md-button class="md-primary md-raised" ng-click="pickFont($event)">
+    Change Font
+  </md-button>
+</md-content>
+

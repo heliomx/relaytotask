@@ -1,0 +1,149 @@
+<md-dialog aria-label="Mango (Fruit)" class="font-dialog">
+  <form id="font-selection-form" ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Select Font</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          X
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content >
+      <div class="md-dialog-content" >
+        <div layout="row">
+          <md-radio-group ng-model="browseGoogleFonts" layout-align="center start" layout="row">
+            <md-radio-button ng-value="false" class="md-primary">System fonts</md-radio-button>
+            <md-radio-button ng-value="true">Google fonts</md-radio-button>
+          </md-radio-group>
+          <span flex></span>
+          <md-slider-container class="size-slider">
+              <span>Size</span>
+              <md-slider min="8" max="80" ng-model="fontSize" 
+                         class="md-warn">
+              </md-slider>
+              <md-input-container>
+                <input type="number" ng-model="fontSize" >
+              </md-input-container>
+            </md-slider-container>
+        </div>
+
+        <div ng-if="!browseGoogleFonts">
+          <div class="fonts-preview" layout="row" layout-wrap>
+            <md-card ng-repeat="font in systemFonts" ng-class="{'selected': font.selected}" ng-click="selectSystemFont(font)">
+                <div class="font-preview" ng-style="{'font-family': font.family, 'font-size': fontSize }">
+                  Aa Bb Cc
+                </div>
+                <div class="font-name">{{ font.name }}</div>
+              </md-card>
+          </div>
+        </div>
+        <div class="google-fonts" ng-if="browseGoogleFonts" layout-align="center start" >
+            <md-input-container class="md-icon-float md-block search-field" >
+                <!-- Use floating label instead of placeholder -->
+                <label>Search</label>
+                <input ng-model="search.text" ng-change="search.querySearch(search.text)" type="text" placeholder="Ex: Alef">
+              </md-input-container>
+          <div class="font-scroller">
+            <div class="fonts-preview" layout="row" layout-wrap>
+              <md-card 
+                ng-repeat="font in filterGoogleFonts() | startFrom:search.currentPage * search.pageSize | limitTo: search.pageSize" 
+                ng-class="{'selected': font.selected}" 
+                ng-click="selectGoogleFont(font)"
+                ng-init="loadFont(font)"
+                >
+                  <div class="font-preview" ng-style="{'font-family': font.family, 'font-size': fontSize }">
+                    Aa Bb Cc
+                  </div>
+                  <div class="font-name"><span md-highlight-text="search.text" md-highlight-flags="i">{{font.family}}</span></div>
+                </md-card>
+            </div>
+          </div> 
+          <div layout="row" layout-align="center center">
+              <md-button ng-disabled="search.currentPage == 0" ng-click="search.previousPage()">&lt;</md-button>
+              <span>{{ search.currentPage + 1}} / {{ search.totalPages }}</span>
+              <md-button ng-disabled="search.isLastPage()" ng-click="search.nextPage()">&gt;</md-button>
+          </div>
+        </div>
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row" layout-wrap>
+      <span flex></span>
+      <md-button ng-click="cancel()">
+       Cancel
+      </md-button>
+      <md-button ng-click="update()">
+        Select
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
+<style>
+  .font-dialog {
+    width: 80%;
+  }
+
+  .size-slider {
+    margin-top: -20px;
+  }
+
+  .search-field {
+    margin-top: 40px;
+  }
+
+  #font-selection-form .font-preview{
+    font-size: 50px;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-bottom: 30px;
+  }
+
+  #font-selection-form md-card {
+    width: 150px;
+    cursor: pointer;
+    position: relative;
+    height: 110px;
+  }
+
+  #font-selection-form md-card .font-name{
+    background-color: #F0F0F0;
+    position: absolute;
+    bottom: 0;
+    width: calc(100% - 20px);
+    padding: 10px;
+    font-size: 11px;
+  }
+
+  #font-selection-form md-card:hover {
+    background-color: rgb(185, 208, 248); 
+  }
+
+  
+
+  #font-selection-form md-card.selected {
+    cursor: pointer;
+    background-color: rgb(93, 150, 248); 
+    color: white;
+  }
+
+  #font-selection-form md-card.selected .font-name {
+    background-color: rgb(65, 132, 247); 
+  }
+
+  #font-selection-form md-card .font-name .highlight {
+    font-weight: bold;
+  }
+
+  #font-selection-form .fonts-preview {
+    justify-content: center;
+    width: 100%;
+    margin-top: 30px;
+  }
+
+  #font-selection-form .md-dialog-content {
+    
+    
+  }
+</style>
