@@ -6,7 +6,7 @@ angular
   {
     var directive = {
       restrict: 'E',
-      templateUrl: '/components/main/main.template.html',
+      templateUrl: './components/main/main.template.html',
       controller: controller
     }
 

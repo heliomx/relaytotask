@@ -19,7 +19,7 @@
             return $mdDialog.show(
                 {
                     controller: DialogController,
-                    templateUrl: '/services/fontpicker/fontpicker.template.html',
+                    templateUrl: './services/fontpicker/fontpicker.template.html',
                     parent: angular.element(document.body),
                     targetEvent: ev,
                     clickOutsideToClose:true
