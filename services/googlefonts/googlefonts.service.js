@@ -1,16 +1,20 @@
+// Service for Google Fonts API and resources
+
 (function() {
   angular
         .module('services')
         .service('googlefontsService', ['$http', '$q', googlefontsService]);
 
+  
   function googlefontsService($http, $q)
   {
-    // AIzaSyDRq9tewDp9ndNKgCswXsYlqnThdBLaOqY
+    
     this.data = null;
     this.loadedFonts = [];
 
     this.list = function()
     {
+      // Cache Font list
       var promise = $q( function(resolve, reject) {
         if(this.data)
         {
@@ -27,6 +31,7 @@
       return promise;
     }
 
+    // Load a font
     this.load = function(font){
       if (this.loadedFonts.indexOf(font) == -1)
       {

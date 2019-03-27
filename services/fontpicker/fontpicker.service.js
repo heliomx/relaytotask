@@ -1,3 +1,6 @@
+// Service for Font picker modal. This module is implemented as a service so it can be easily used
+// everywhere in the application
+
 (function()
 {
     angular
@@ -146,16 +149,6 @@
         self.currentPage = 0;
         self.pageSize = 12
         self.totalPages = 0;
-
-        self.textChange = function(text)
-        {
-
-        }
-        
-        self.selectedItemChange = function(item)
-        {
-
-        }
 
         self.previousPage = function()
         {
