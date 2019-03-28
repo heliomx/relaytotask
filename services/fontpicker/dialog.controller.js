@@ -2,7 +2,6 @@
 DialogController.$inject = ['$scope', '$mdDialog', 'googlefontsService', 'systemFonts'];
 function DialogController($scope, $mdDialog, googlefontsService, systemFonts) 
 {
-    console.log('aqui', systemFonts);
     $scope.googleFonts = null;
     $scope.browseGoogleFonts = false;
     $scope.fontSize = 30;
