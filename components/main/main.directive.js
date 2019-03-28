@@ -1,5 +1,5 @@
 angular
-  .module('components')
+  .module('app.components')
   .directive('main', mainComponent);
 
   function mainComponent()
@@ -31,7 +31,7 @@ angular
           {
               $scope.textFont = result;
           }
-        );
+        ).catch( angular.noop );
       }
     }
   }

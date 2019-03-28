@@ -2,10 +2,9 @@
 
 (function() {
   angular
-        .module('services')
+        .module('app.services')
         .service('googlefontsService', ['$http', '$q', googlefontsService]);
 
-  
   function googlefontsService($http, $q)
   {
     
@@ -42,7 +41,6 @@
           }
         });
       }
-    }
-    
+    } 
   }
-}());
+})();

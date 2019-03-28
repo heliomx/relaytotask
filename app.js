@@ -1,13 +1,14 @@
 // Modules
-angular.module('components', []);
-angular.module('ui-services', []);
-angular.module('services', []);
+angular.module('app.components', []);
+angular.module('app.uiServices', []);
+angular.module('app.services', []);
+angular.module('app.filters', []);
 
 // Main Module
-angular.module('fontpickerApp', [
+angular.module('app', [
   'ngMaterial', 
   'ngMessages', 
-  'services',
-  'ui-services',
-  'components'
+  'app.services',
+  'app.uiServices',
+  'app.components'
 ]);
